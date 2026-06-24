@@ -1,0 +1,246 @@
+#lj-analyzing {
+    position: fixed;
+    top: 14px;
+    right: 20px;
+    background: #142539;
+    color: #6b8fac;
+    font-family: Montserrat, -apple-system, sans-serif;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(43, 143, 216, 0.25);
+    z-index: 99999;
+    pointer-events: none;
+}
+
+#lj-overlay {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 350px;
+    background: #091B30;
+    border: 1px solid rgba(43, 143, 216, 0.22);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    font-family: Montserrat, -apple-system, sans-serif;
+    font-size: 13px;
+    color: #e8edf2;
+    z-index: 99999;
+    overflow: hidden;
+}
+
+.lj-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(43, 143, 216, 0.18);
+    background: #0d2236;
+}
+
+.lj-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+    letter-spacing: 0.2px;
+}
+
+.lj-sub {
+    font-size: 11px;
+    color: #6b8fac;
+    flex: 1;
+}
+
+.lj-close {
+    background: none;
+    border: none;
+    color: #6b8fac;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 2px;
+    font-family: inherit;
+    transition: color 0.15s;
+}
+
+.lj-close:hover {
+    color: #e8edf2;
+}
+
+.lj-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.lj-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #6b8fac;
+    margin-top: 4px;
+    display: block;
+}
+
+.lj-label:first-child {
+    margin-top: 0;
+}
+
+.lj-req {
+    color: #e03535;
+    font-size: 11px;
+}
+
+.lj-input,
+.lj-select {
+    width: 100%;
+    background: #142539;
+    border: 1px solid rgba(43, 143, 216, 0.2);
+    border-radius: 7px;
+    color: #e8edf2;
+    font-family: inherit;
+    font-size: 12px;
+    padding: 7px 10px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.lj-input::placeholder {
+    color: #6b8fac;
+}
+
+.lj-input:focus,
+.lj-select:focus {
+    border-color: #2B8FD8;
+}
+
+.lj-input.lj-missing {
+    border-color: #e03535;
+}
+
+.lj-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236b8fac' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    cursor: pointer;
+}
+
+.lj-days {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    padding: 6px 8px;
+    background: #142539;
+    border: 1px solid rgba(43, 143, 216, 0.2);
+    border-radius: 7px;
+    box-sizing: border-box;
+}
+
+.lj-days.lj-missing-days {
+    border-color: #e03535;
+}
+
+.lj-day-pill {
+    background: #142539;
+    border: 1px solid rgba(43, 143, 216, 0.2);
+    border-radius: 5px;
+    color: #6b8fac;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 7px;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+
+.lj-day-pill.active {
+    background: #1a3d5c;
+    border-color: #2B8FD8;
+    color: #2B8FD8;
+}
+
+.lj-day-pill:hover:not(.active) {
+    border-color: #6b8fac;
+    color: #e8edf2;
+}
+
+.lj-time-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.lj-time-part {
+    width: 46px !important;
+    text-align: center;
+    padding: 7px 4px !important;
+    flex-shrink: 0;
+}
+
+.lj-time-colon {
+    color: #e8edf2;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.lj-period-btn {
+    background: none;
+    border: 1px solid rgba(43, 143, 216, 0.5);
+    border-radius: 5px;
+    color: #2B8FD8;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 9px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 2px;
+    transition: background 0.12s;
+}
+
+.lj-period-btn:hover {
+    background: rgba(43, 143, 216, 0.15);
+}
+
+.lj-error {
+    color: #e03535;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.lj-submit {
+    background: #2B8FD8;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 9px;
+    cursor: pointer;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+    transition: opacity 0.15s;
+}
+
+.lj-submit:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+.lj-submit:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.lj-submit.lj-success {
+    background: #27a06a;
+    opacity: 1;
+    cursor: default;
+}

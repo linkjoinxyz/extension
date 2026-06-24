@@ -1,0 +1,46 @@
+{
+  "name": "LinkJoin",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlHapdFqdhnCe+iYo1ikJc4GOcbnRxrq8DzKwGLz9PPw2w6XSRxBQ24/RGNZ89qAFaogMt9ikVMNcrZyjKocKgaL+xWrBxxMzog5BnqqPvTf0/Mi76ZO7dF2T702d7iZxPmFdvGRb5UesyeEcqIw3wJkImS5q88qTbjO0QweRL1llrTV5uNdT+CC62WJsTJ2ZlPUhC1Quqs8WuugfOCWT8vTsVrwZkL+B9JHzLWxL6YQrp6U73zCPEaFzYytqRmVmYJ7+TcHYI47e3H4XnSlLxTayDjD9I79dq32QGvcXMGOyTe5pkW4TBpd5Pq+PSM8WtZ0Qbyvcm1DES7S4uI4p5QIDAQAB",
+  "description": "Organize and automatically open virtual meetings.",
+  "version": "0.3.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["alarms", "storage", "windows", "offscreen", "contextMenus", "notifications"],
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://linkjoin.xyz/*", "http://localhost:5173/*"],
+      "js": ["lj-detect.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://linkjoin.xyz/*", "http://localhost:5173/*"],
+      "js": ["lj-auth-sync.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": ["https://mail.google.com/*", "https://linkjoin.xyz/*", "http://localhost:5173/*", "http://localhost:8000/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/icons/logo-rounded.png",
+      "32": "/icons/logo-rounded.png",
+      "48": "/icons/logo-rounded.png",
+      "128": "/icons/logo-rounded.png"
+    }
+  },
+  "icons": {
+    "16": "/icons/logo-rounded.png",
+    "32": "/icons/logo-rounded.png",
+    "48": "/icons/logo-rounded.png",
+    "128": "/icons/logo-rounded.png"
+  }
+}

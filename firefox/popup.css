@@ -1,0 +1,282 @@
+:root {
+    --lightblue: #2B8FD8;
+    --blue: #142539;
+    --darkblue: #091B30;
+    --text: #e8edf2;
+    --muted: #6b8fac;
+    --border: rgba(43, 143, 216, 0.18);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 340px;
+    background: var(--darkblue);
+    color: var(--text);
+    font-family: Montserrat, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+}
+
+.logo-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+    flex: 1;
+    color: white;
+}
+
+#dashboard-btn {
+    background: var(--lightblue);
+    border: none;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.15s;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+}
+
+#dashboard-btn:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+#logout-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.2px;
+}
+
+#logout-btn:hover {
+    color: var(--text);
+    border-color: var(--muted);
+}
+
+/* User email */
+
+.user-email {
+    padding: 8px 16px 0;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1px;
+}
+
+/* Login form */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px 18px;
+    flex: 1;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 2px;
+}
+
+input[type="email"],
+input[type="password"] {
+    background: var(--blue);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+}
+
+input::placeholder {
+    color: var(--muted);
+}
+
+input:focus {
+    border-color: var(--lightblue);
+}
+
+#login-btn {
+    background: var(--lightblue);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+}
+
+#login-btn:hover:not(:disabled) {
+    opacity: 0.85;
+}
+
+#login-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.error {
+    color: #e05555;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.google-btn {
+    background: white;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    color: #3c4043;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    transition: background 0.15s;
+}
+.google-btn:hover:not(:disabled) { background: #f8f9fa; }
+.google-btn:disabled { opacity: 0.6; cursor: default; }
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    margin: 2px 0;
+}
+.or-divider::before,
+.or-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+/* Meetings */
+
+.meetings-section {
+    padding: 14px 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+}
+
+#meetings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    max-height: 320px;
+}
+
+.section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+}
+
+.meeting-card {
+    background: var(--blue);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.meeting-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meeting-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.meeting-days {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.meeting-next {
+    font-size: 11px;
+    color: var(--lightblue);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.muted-msg {
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+    padding: 18px 0;
+}

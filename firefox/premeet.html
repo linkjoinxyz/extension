@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meeting Starting</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: #060F1A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: white;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 48px 56px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(43,143,216,0.18);
+  border-radius: 20px;
+  min-width: 320px;
+  max-width: 440px;
+  text-align: center;
+}
+
+.meeting-name {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  margin-top: -12px;
+}
+
+.ring-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.ring-track {
+  fill: none;
+  stroke: rgba(43,143,216,0.12);
+  stroke-width: 5;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: #2B8FD8;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 238.76;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.seconds {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  position: relative;
+  z-index: 1;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  height: 42px;
+  padding: 0 20px;
+  border-radius: 10px;
+  border: none;
+  font: 600 13px Montserrat, sans-serif;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.15s;
+  white-space: nowrap;
+}
+
+.btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+.btn-primary { background: #2B8FD8; color: white; }
+
+.btn-ghost {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.7);
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="meeting-name" id="name">Your meeting</div>
+  <div class="sub">is starting soon</div>
+
+  <div class="ring-wrap" id="ring-wrap">
+    <svg viewBox="0 0 96 96" class="ring-svg">
+      <circle class="ring-track" cx="48" cy="48" r="38" />
+      <circle class="ring-fill" id="ring" cx="48" cy="48" r="38" style="stroke-dashoffset:0" />
+    </svg>
+    <span class="seconds" id="secs">5</span>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-ghost" id="pw-btn" style="display:none">Copy password</button>
+    <button class="btn btn-primary" id="join-btn">Join now</button>
+    <button class="btn btn-ghost" id="dismiss-btn" style="opacity:0.5">Dismiss</button>
+  </div>
+</div>
+
+<script src="premeet.js"></script>
+</body>
+</html>
