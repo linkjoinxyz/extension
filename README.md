@@ -1,12 +1,12 @@
 # LinkJoin Extension
 
-Browser extensions for [LinkJoin](https://linkjoin.xyz) — available for Chrome and Firefox.
+Browser extensions for [LinkJoin](https://linkjoin.xyz), available for Chrome and Firefox.
 
 ## What they do
 
-- **Pre-meet popup** — a countdown window appears before each scheduled meeting, with a one-click join button and optional password copy
-- **Bookmark from anywhere** — add any page to your LinkJoin bookmarks in one click from the extension popup
-- **Auth sync** — stays in sync with your LinkJoin session automatically
+- **Pre-meet popup:** a countdown window appears before each scheduled meeting, with a one-click join button and optional password copy
+- **Bookmark from anywhere:** add any page to your LinkJoin bookmarks in one click from the extension popup
+- **Auth sync:** stays in sync with your LinkJoin session automatically
 
 ## Structure
 
