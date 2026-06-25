@@ -135,10 +135,12 @@ async function processEmailBody(bodyEl) {
     const msgContainer = bodyEl.closest('[data-message-id]')
     const msgId = msgContainer?.dataset?.messageId
     if (msgId && seen.has(msgId)) return
-    if (msgId) seen.add(msgId)
 
     const detectedLink = findMeetingLink(bodyEl)
     if (!detectedLink) return
+
+    // Only mark seen once we've confirmed there's a link to act on
+    if (msgId) seen.add(msgId)
 
     const { ljDismissed = [] } = await chrome.storage.local.get('ljDismissed')
     if (ljDismissed.some(url => urlsMatch(url, detectedLink))) return
@@ -162,17 +164,24 @@ async function processEmailBody(bodyEl) {
 }
 
 const observer = new MutationObserver((mutations) => {
+    const toProcess = new Set()
     for (const mutation of mutations) {
+        // Content added to an existing .a3s.aiL (Gmail populates body after adding container)
+        const targetBody = mutation.target.closest?.('.a3s.aiL') ||
+            (mutation.target.matches?.('.a3s.aiL') ? mutation.target : null)
+        if (targetBody) toProcess.add(targetBody)
+
+        // New .a3s.aiL node added to the DOM
         for (const node of mutation.addedNodes) {
             if (node.nodeType !== 1) continue
-            const bodies = node.matches?.('.a3s.aiL')
-                ? [node]
-                : [...node.querySelectorAll('.a3s.aiL')]
-            for (const body of bodies) {
-                processEmailBody(body)
+            if (node.matches?.('.a3s.aiL')) {
+                toProcess.add(node)
+            } else {
+                node.querySelectorAll?.('.a3s.aiL').forEach(b => toProcess.add(b))
             }
         }
     }
+    toProcess.forEach(processEmailBody)
 })
 
 observer.observe(document.body, { childList: true, subtree: true })
@@ -184,13 +193,16 @@ function scanExisting() {
 // Catch emails already in the DOM on load
 setTimeout(scanExisting, 1000)
 
-// Catch SPA navigation (Gmail uses history.pushState when opening emails)
+// Gmail uses hash navigation (#inbox/...), not pushState
+window.addEventListener('hashchange', () => setTimeout(scanExisting, 1000))
+
+// Also intercept pushState in case Gmail changes behavior
 const _origPushState = history.pushState.bind(history)
 history.pushState = function (...args) {
     _origPushState(...args)
-    setTimeout(scanExisting, 800)
+    setTimeout(scanExisting, 1000)
 }
-window.addEventListener('popstate', () => setTimeout(scanExisting, 800))
+window.addEventListener('popstate', () => setTimeout(scanExisting, 1000))
 
 // --- Analyzing badge ---
 
